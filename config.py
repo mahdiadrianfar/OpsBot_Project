@@ -4,8 +4,8 @@
 # ===============================
 
 # API credentials 
-API_ID = 12345678          # ← اینجا API ID خودت
-API_HASH = "YOUR_API_HASH" # ← اینجا API HASH خودت
+API_ID = 30854055          # ← اینجا API ID خودت
+API_HASH = "172877fa40aaf04423699c8188784988" # ← اینجا API HASH خودت
 
 #  نام فایل سشن 
 SESSION_NAME = "main_session"
