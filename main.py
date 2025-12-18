@@ -1,40 +1,32 @@
-# main.py
-# ===============================
-# Main entry for Telegram API 8
-# ===============================
-
 import asyncio
-from telethon import TelegramClient
-
+from pyrogram import Client
 from config import API_ID, API_HASH, SESSION_NAME
 
-# 🔹 ایمپورت ربات‌ها
-from bots import bot_1
-from bots import bot_2
-from bots import bot_3
-
+PROXY = {
+    "scheme": "http",
+    "hostname": "127.0.0.1",  # ✅ فقط این
+    "port": 12334
+}
 
 async def main():
-    #  ساخت کلاینت تلگرام
-    client = TelegramClient(
+    print("🚀 Starting Telegram client with Windows proxy...")
+
+    app = Client(
         SESSION_NAME,
-        API_ID,
-        API_HASH
+        api_id=API_ID,
+        api_hash=API_HASH,
+        proxy=PROXY
     )
 
-    #  استارت کلاینت (اولین بار کد می‌خواد)
-    await client.start()
-    print("✅ Telegram client started successfully")
+    await app.start()
+    print("✅ Client started")
 
-    #  ثبت هندلرهای هر ربات
-    await bot_1.register(client)
-    await bot_2.register(client)
-    await bot_3.register(client)
+    await app.send_message("@mahdiadrianfar", "himan")
+    print("✅ Test message sent")
 
-    print("🤖 All bots registered and running...")
-
-    #  اجرای دائم
-    await client.run_until_disconnected()
+    await asyncio.sleep(2)
+    await app.stop()
+    print("🛑 Client stopped")
 
 
 if __name__ == "__main__":
